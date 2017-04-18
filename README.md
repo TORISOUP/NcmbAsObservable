@@ -9,6 +9,8 @@ NcmbAsObservableは、NIFTYCloudが提供している[NCMB Unityプラグイン]
 
 # 使い方
 
+まずは `NcmbAsObservables` へのusingを追加してください。
+
 ## 拡張メソッド
 
 末尾がAsyncと表記された非同期APIを **AsyncAsStream と呼びかえることで`IObservable`として扱うことができるようになります。
