@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NCMB;
+﻿using NCMB;
 using UniRx;
 
 namespace Assets.NcmbAsObservables
@@ -31,6 +27,5 @@ namespace Assets.NcmbAsObservables
                 return Disposable.Empty;
             });
         }
-
     }
 }

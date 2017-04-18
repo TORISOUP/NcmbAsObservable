@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NCMB;
+﻿using NCMB;
 using UniRx;
 using UnityEngine;
 
@@ -13,7 +9,7 @@ namespace NcmbAsObservables.sample
     /// </summary>
     public class QuerySample : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             var query = new NCMBQuery<NCMBObject>("Score");
             query.OrderByDescending("score");
@@ -28,8 +24,6 @@ namespace NcmbAsObservables.sample
                         Debug.Log(o);
                     }
                 }, error => Debug.LogError(error));
-
         }
-
     }
 }

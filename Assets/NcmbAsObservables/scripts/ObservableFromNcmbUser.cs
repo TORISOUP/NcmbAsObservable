@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NCMB;
+﻿using NCMB;
 using UniRx;
 
 namespace NcmbAsObservables
@@ -12,7 +8,6 @@ namespace NcmbAsObservables
     /// </summary>
     public static class ObservableFromNcmbUser
     {
-
         /// <summary>
         /// 非同期処理でメールアドレスとパスワードを指定して、ユーザのログインを行います。
         /// </summary>

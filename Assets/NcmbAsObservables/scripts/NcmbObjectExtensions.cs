@@ -8,7 +8,6 @@ namespace NcmbAsObservables
     /// </summary>
     public static class NcmbObjectExtensions
     {
-
         /// <summary>
         /// 非同期処理でオブジェクトの取得を行います。
         /// </summary>
@@ -32,8 +31,6 @@ namespace NcmbAsObservables
                 return Disposable.Empty;
             });
         }
-
-
 
         /// <summary>
 		/// 非同期処理でオブジェクトの保存を行います。<br/>
@@ -61,7 +58,6 @@ namespace NcmbAsObservables
                 return Disposable.Empty;
             });
         }
-
 
         /// <summary>
         /// オブジェクトの削除を行います。

@@ -1,9 +1,5 @@
-﻿using System;
+﻿using NCMB;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using NCMB;
 using UniRx;
 
 namespace NcmbAsObservables
@@ -37,8 +33,6 @@ namespace NcmbAsObservables
             });
         }
 
-
-
         /// <summary>
 		/// 非同期処理でオブジェクトの保存を行います。<br/>
 		/// SaveAsync()を実行してから編集などをしていなく、保存をする必要が無い場合は通信を行いません。<br/>
@@ -66,7 +60,6 @@ namespace NcmbAsObservables
             });
         }
 
-
         /// <summary>
         /// オブジェクトの削除を行います。
         /// </summary>
@@ -89,7 +82,6 @@ namespace NcmbAsObservables
                 return Disposable.Empty;
             });
         }
-
 
         /// <summary>
         /// 非同期処理で現在ログインしているユーザのauthDataの削除を行います。<br/>
@@ -198,6 +190,5 @@ namespace NcmbAsObservables
                 return Disposable.Empty;
             });
         }
-
     }
 }
