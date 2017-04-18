@@ -33,10 +33,10 @@ namespace NcmbAsObservables
         }
 
         /// <summary>
-		/// 非同期処理でオブジェクトの保存を行います。<br/>
-		/// SaveAsync()を実行してから編集などをしていなく、保存をする必要が無い場合は通信を行いません。<br/>
-		/// オブジェクトIDが登録されていない新規オブジェクトなら登録を行います。<br/>
-		/// オブジェクトIDが登録されている既存オブジェクトなら更新を行います。<br/>
+        /// 非同期処理でオブジェクトの保存を行います。<br/>
+        /// SaveAsync()を実行してから編集などをしていなく、保存をする必要が無い場合は通信を行いません。<br/>
+        /// オブジェクトIDが登録されていない新規オブジェクトなら登録を行います。<br/>
+        /// オブジェクトIDが登録されている既存オブジェクトなら更新を行います。<br/>
         /// </summary>
         /// <returns>もとのオブジェクト</returns>
         public static IObservable<NCMBObject> SaveAsyncAsStream(this NCMBObject origin)
