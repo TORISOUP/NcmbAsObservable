@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NcmbAsObservables;
 using System.Linq;
-using System.Text;
-using NcmbAsObservables;
 using UniRx;
 using UnityEngine;
 
-namespace Assets.NcmbAsObservables.sample
+namespace NcmbAsObservables.Samples
 {
     public class LoginAndLogoutSample : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             ObservableFromNcmbUser
                 .LogInAsync("test_user_name", "hogehoge") //Login

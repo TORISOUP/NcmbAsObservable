@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace NcmbAsObservables.sample
+namespace NcmbAsObservables.Samples
 {
     public class SingUpSample : MonoBehaviour
     {
@@ -24,11 +24,11 @@ namespace NcmbAsObservables.sample
                 })
                 .SelectMany(u =>
                 {
-        //Change email and Age column when signed up
-        u.Email = "test@test.com";
+                    //Change email and Age column when signed up
+                    u.Email = "test@test.com";
                     u["Age"] = 20;
                     return u.SaveAsyncAsStream(); //Save
-    })
+                })
                 .Catch((NCMBException e) =>
                 {
                     Debug.LogError("Error on save:" + e);
@@ -47,8 +47,6 @@ namespace NcmbAsObservables.sample
                 {
                     Debug.LogError("Unknown Error:" + e);
                 });
-
-
         }
     }
 }

@@ -17,19 +17,32 @@ namespace NcmbAsObservables
         {
             return Observable.Create<NCMBUser>(observer =>
             {
+                var gate = new object();
+                var isDisposed = false;
                 origin.FetchAsync(error =>
                 {
-                    if (error == null)
+                    lock (gate)
                     {
-                        observer.OnNext(origin);
-                        observer.OnCompleted();
-                    }
-                    else
-                    {
-                        observer.OnError(error);
+                        if (isDisposed) return;
+
+                        if (error == null)
+                        {
+                            observer.OnNext(origin);
+                            observer.OnCompleted();
+                        }
+                        else
+                        {
+                            observer.OnError(error);
+                        }
                     }
                 });
-                return Disposable.Empty;
+                return Disposable.Create(() =>
+                {
+                    lock (gate)
+                    {
+                        isDisposed = true;
+                    }
+                });
             });
         }
 
@@ -44,19 +57,31 @@ namespace NcmbAsObservables
         {
             return Observable.Create<NCMBUser>(observer =>
             {
+                var gate = new object();
+                var isDisposed = false;
                 origin.SaveAsync(error =>
                 {
-                    if (error == null)
+                    lock (gate)
                     {
-                        observer.OnNext(origin);
-                        observer.OnCompleted();
-                    }
-                    else
-                    {
-                        observer.OnError(error);
+                        if (isDisposed) return;
+                        if (error == null)
+                        {
+                            observer.OnNext(origin);
+                            observer.OnCompleted();
+                        }
+                        else
+                        {
+                            observer.OnError(error);
+                        }
                     }
                 });
-                return Disposable.Empty;
+                return Disposable.Create(() =>
+                {
+                    lock (gate)
+                    {
+                        isDisposed = true;
+                    }
+                });
             });
         }
 
@@ -67,19 +92,31 @@ namespace NcmbAsObservables
         {
             return Observable.Create<Unit>(observer =>
             {
+                var gate = new object();
+                var isDisposed = false;
                 origin.DeleteAsync(error =>
                 {
-                    if (error == null)
+                    lock (gate)
                     {
-                        observer.OnNext(Unit.Default);
-                        observer.OnCompleted();
-                    }
-                    else
-                    {
-                        observer.OnError(error);
+                        if (isDisposed) return;
+                        if (error == null)
+                        {
+                            observer.OnNext(Unit.Default);
+                            observer.OnCompleted();
+                        }
+                        else
+                        {
+                            observer.OnError(error);
+                        }
                     }
                 });
-                return Disposable.Empty;
+                return Disposable.Create(() =>
+                {
+                    lock (gate)
+                    {
+                        isDisposed = true;
+                    }
+                });
             });
         }
 
@@ -93,19 +130,31 @@ namespace NcmbAsObservables
         {
             return Observable.Create<NCMBUser>(observer =>
             {
+                var gate = new object();
+                var isDisposed = false;
                 user.UnLinkWithAuthDataAsync(provider, error =>
                 {
-                    if (error == null)
+                    lock (gate)
                     {
-                        observer.OnNext(user);
-                        observer.OnCompleted();
-                    }
-                    else
-                    {
-                        observer.OnError(error);
+                        if (isDisposed) return;
+                        if (error == null)
+                        {
+                            observer.OnNext(user);
+                            observer.OnCompleted();
+                        }
+                        else
+                        {
+                            observer.OnError(error);
+                        }
                     }
                 });
-                return Disposable.Empty;
+                return Disposable.Create(() =>
+                {
+                    lock (gate)
+                    {
+                        isDisposed = true;
+                    }
+                });
             });
         }
 
@@ -121,19 +170,31 @@ namespace NcmbAsObservables
         {
             return Observable.Create<NCMBUser>(observer =>
             {
+                var gate = new object();
+                var isDisposed = false;
                 user.LinkWithAuthDataAsync(linkParam, error =>
-                 {
-                     if (error == null)
-                     {
-                         observer.OnNext(user);
-                         observer.OnCompleted();
-                     }
-                     else
-                     {
-                         observer.OnError(error);
-                     }
-                 });
-                return Disposable.Empty;
+                {
+                    lock (gate)
+                    {
+                        if (isDisposed) return;
+                        if (error == null)
+                        {
+                            observer.OnNext(user);
+                            observer.OnCompleted();
+                        }
+                        else
+                        {
+                            observer.OnError(error);
+                        }
+                    }
+                });
+                return Disposable.Create(() =>
+                {
+                    lock (gate)
+                    {
+                        isDisposed = true;
+                    }
+                });
             });
         }
 
@@ -147,19 +208,31 @@ namespace NcmbAsObservables
         {
             return Observable.Create<NCMBUser>(observer =>
             {
+                var gate = new object();
+                var isDisposed = false;
                 user.LogInWithAuthDataAsync(error =>
                 {
-                    if (error == null)
+                    lock (gate)
                     {
-                        observer.OnNext(user);
-                        observer.OnCompleted();
-                    }
-                    else
-                    {
-                        observer.OnError(error);
+                        if (isDisposed) return;
+                        if (error == null)
+                        {
+                            observer.OnNext(user);
+                            observer.OnCompleted();
+                        }
+                        else
+                        {
+                            observer.OnError(error);
+                        }
                     }
                 });
-                return Disposable.Empty;
+                return Disposable.Create(() =>
+                {
+                    lock (gate)
+                    {
+                        isDisposed = true;
+                    }
+                });
             });
         }
 
@@ -175,19 +248,31 @@ namespace NcmbAsObservables
         {
             return Observable.Create<NCMBUser>(observer =>
             {
+                var gate = new object();
+                var isDisposed = false;
                 user.SignUpAsync(error =>
                 {
-                    if (error == null)
+                    lock (gate)
                     {
-                        observer.OnNext(user);
-                        observer.OnCompleted();
-                    }
-                    else
-                    {
-                        observer.OnError(error);
+                        if (isDisposed) return;
+                        if (error == null)
+                        {
+                            observer.OnNext(user);
+                            observer.OnCompleted();
+                        }
+                        else
+                        {
+                            observer.OnError(error);
+                        }
                     }
                 });
-                return Disposable.Empty;
+                return Disposable.Create(() =>
+                {
+                    lock (gate)
+                    {
+                        isDisposed = true;
+                    }
+                });
             });
         }
     }

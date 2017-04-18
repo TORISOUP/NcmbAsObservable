@@ -12,19 +12,32 @@ namespace NcmbAsObservables
         {
             return Observable.Create<NCMBPush>(observer =>
             {
+                var gate = new object();
+                var isDisposed = false;
                 origin.SendPush(error =>
                 {
-                    if (error == null)
+                    lock (gate)
                     {
-                        observer.OnNext(origin);
-                        observer.OnCompleted();
-                    }
-                    else
-                    {
-                        observer.OnError(error);
+                        if (isDisposed) return;
+
+                        if (error == null)
+                        {
+                            observer.OnNext(origin);
+                            observer.OnCompleted();
+                        }
+                        else
+                        {
+                            observer.OnError(error);
+                        }
                     }
                 });
-                return Disposable.Empty;
+                return Disposable.Create(() =>
+                {
+                    lock (gate)
+                    {
+                        isDisposed = true;
+                    }
+                });
             });
         }
     }

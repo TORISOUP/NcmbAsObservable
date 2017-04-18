@@ -21,20 +21,33 @@ namespace NcmbAsObservables
         {
             return Observable.Create<byte[]>(observer =>
             {
+                var gate = new object();
+                var isDisposed = false;
                 script.ExecuteAsync(header, body, query, (data, error) =>
-                  {
-                      if (error == null)
-                      {
-                          observer.OnNext(data);
-                          observer.OnCompleted();
-                      }
-                      else
-                      {
-                          observer.OnError(error);
-                      }
-                  });
+                {
+                    lock (gate)
+                    {
+                        if (isDisposed) return;
 
-                return Disposable.Empty;
+                        if (error == null)
+                        {
+                            observer.OnNext(data);
+                            observer.OnCompleted();
+                        }
+                        else
+                        {
+                            observer.OnError(error);
+                        }
+                    }
+                });
+
+                return Disposable.Create(() =>
+                {
+                    lock (gate)
+                    {
+                        isDisposed = true;
+                    }
+                });
             });
         }
     }

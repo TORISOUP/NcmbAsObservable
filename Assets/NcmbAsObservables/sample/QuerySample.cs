@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace NcmbAsObservables.sample
+namespace NcmbAsObservables.Samples
 {
     /// <summary>
     /// 参考： https://github.com/NIFTYCloud-mbaas/NCMB2dst_comp

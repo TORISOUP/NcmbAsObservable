@@ -16,19 +16,32 @@ namespace NcmbAsObservables
         {
             return Observable.Create<NCMBObject>(observer =>
             {
+                var gate = new object();
+                var isDisposed = false;
+
                 origin.FetchAsync(error =>
                 {
-                    if (error == null)
+                    lock (gate)
                     {
-                        observer.OnNext(origin);
-                        observer.OnCompleted();
-                    }
-                    else
-                    {
-                        observer.OnError(error);
+                        if (isDisposed) return;
+                        if (error == null)
+                        {
+                            observer.OnNext(origin);
+                            observer.OnCompleted();
+                        }
+                        else
+                        {
+                            observer.OnError(error);
+                        }
                     }
                 });
-                return Disposable.Empty;
+                return Disposable.Create(() =>
+                {
+                    lock (gate)
+                    {
+                        isDisposed = true;
+                    }
+                });
             });
         }
 
@@ -43,19 +56,32 @@ namespace NcmbAsObservables
         {
             return Observable.Create<NCMBObject>(observer =>
             {
+                var gate = new object();
+                var isDisposed = false;
+
                 origin.SaveAsync(error =>
                 {
-                    if (error == null)
+                    lock (gate)
                     {
-                        observer.OnNext(origin);
-                        observer.OnCompleted();
-                    }
-                    else
-                    {
-                        observer.OnError(error);
+                        if (isDisposed) return;
+                        if (error == null)
+                        {
+                            observer.OnNext(origin);
+                            observer.OnCompleted();
+                        }
+                        else
+                        {
+                            observer.OnError(error);
+                        }
                     }
                 });
-                return Disposable.Empty;
+                return Disposable.Create(() =>
+                {
+                    lock (gate)
+                    {
+                        isDisposed = true;
+                    }
+                });
             });
         }
 
@@ -66,19 +92,32 @@ namespace NcmbAsObservables
         {
             return Observable.Create<Unit>(observer =>
             {
+                var gate = new object();
+                var isDisposed = false;
+
                 origin.DeleteAsync(error =>
                 {
-                    if (error == null)
+                    lock (gate)
                     {
-                        observer.OnNext(Unit.Default);
-                        observer.OnCompleted();
-                    }
-                    else
-                    {
-                        observer.OnError(error);
+                        if (isDisposed) return;
+                        if (error == null)
+                        {
+                            observer.OnNext(Unit.Default);
+                            observer.OnCompleted();
+                        }
+                        else
+                        {
+                            observer.OnError(error);
+                        }
                     }
                 });
-                return Disposable.Empty;
+                return Disposable.Create(() =>
+                {
+                    lock (gate)
+                    {
+                        isDisposed = true;
+                    }
+                });
             });
         }
     }
