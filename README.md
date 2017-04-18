@@ -13,7 +13,7 @@ NcmbAsObservableは、NIFTYCloudが提供している[NCMB Unityプラグイン]
 
 末尾がAsyncと表記された非同期APIを **AsyncAsStream と呼びかえることで`IObservable`として扱うことができるようになります。
 
-```
+```csharp
 var user = new NCMBUser();
 
 user.UserName = "test_user_name";
@@ -34,7 +34,7 @@ user.SingUpAsyncAsStream()
 
 NCMBQueryは`NCMBQueryHelper<T>`を利用することで`IObservable`で扱えるようになります。
 
-```
+```csharp
 var query = new NCMBQuery<NCMBObject>("Score");
 query.OrderByDescending("score");
 query.Limit = 5;
@@ -54,7 +54,7 @@ NcmbQueryHelper<NCMBObject>
 
 NcmbUserにstaticで実装されているAsync系のAPIは`ObservableFromNcmbUser`から呼び出すことができます。
 
-```
+```csharp
 ObservableFromNcmbUser
     .LogInAsync("test_user_name", "hogehoge") //Login
     .SelectMany(u => u.FetchAsyncAsStream())  //Fetch
