@@ -1,7 +1,7 @@
 ﻿using NCMB;
 using UniRx;
 
-namespace Assets.NcmbAsObservables
+namespace NcmbAsObservables
 {
     public static class NcmbPushExtensions
     {
