@@ -10,7 +10,7 @@ namespace NcmbAsObservables
     /// <summary>
     /// NCMBUser関係の処理をObservableとして扱える
     /// </summary>
-    public static class NcmbUserObservable
+    public static class ObservableFromNcmbUser
     {
 
         /// <summary>

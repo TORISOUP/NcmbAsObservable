@@ -8,16 +8,15 @@ using UniRx;
 namespace NcmbAsObservables
 {
     /// <summary>
-    /// NcmbQueryの実行結果ををObservableとして扱えるようにするラッパー
+    /// NcmbQueryの実行結果をObservableとして提供する
     /// </summary>
     public struct NcmbQueryHelper<T> where T : NCMBObject
     {
-
         /// <summary>
         /// クエリにマッチするオブジェクトを取得を行います。
         /// </summary>
         /// <returns>結果</returns>
-        public IObservable<List<T>> FindAsync(NCMBQuery<T> query)
+        public static IObservable<List<T>> FindAsync(NCMBQuery<T> query)
         {
             return Observable.Create<List<T>>(observer =>
             {
@@ -42,7 +41,7 @@ namespace NcmbAsObservables
         /// 指定IDのオブジェクトを取得を行います。
         /// </summary>
         /// <returns>結果</returns>
-        public IObservable<T> GetAsync(NCMBQuery<T> query, string objectId)
+        public static IObservable<T> GetAsync(NCMBQuery<T> query, string objectId)
         {
             return Observable.Create<T>(observer =>
             {
@@ -67,7 +66,7 @@ namespace NcmbAsObservables
         ///クエリにマッチするオブジェクト数の取得を行います。
         /// </summary>
         /// <returns>カウント数</returns>
-        public IObservable<int> CountAsync(NCMBQuery<T> query)
+        public static IObservable<int> CountAsync(NCMBQuery<T> query)
         {
             return Observable.Create<int>(observer =>
             {
