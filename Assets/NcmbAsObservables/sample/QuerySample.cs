@@ -15,8 +15,8 @@ namespace NcmbAsObservables.Samples
             query.OrderByDescending("score");
             query.Limit = 5;
 
-            NcmbQueryHelper<NCMBObject>
-                .FindAsync(query)
+            query
+                .FindAsyncAsStream()
                 .Subscribe(resultList =>
                 {
                     foreach (var o in resultList)
