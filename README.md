@@ -34,15 +34,15 @@ user.SingUpAsyncAsStream()
 
 ## NCMBQuery
 
-NCMBQueryは`NCMBQueryHelper<T>`を利用することで`IObservable`で扱えるようになります。
+NCMBQueryも同様に、非同期APIを**AsyncAsStream と呼びかえることで`IObservable`として扱うことができるようになります。
 
 ```csharp
 var query = new NCMBQuery<NCMBObject>("Score");
 query.OrderByDescending("score");
 query.Limit = 5;
 
-NcmbQueryHelper<NCMBObject>
-    .FindAsync(query)
+query
+    .FindAsyncAsStream()
     .Subscribe(resultList =>
     {
         foreach (var o in resultList)
